@@ -82,20 +82,22 @@ export const useArray = <T>(initialArray: T[]) => {
   };
 };
 
-/* export const useDocumentTitle = (title: string, keepUnmount: boolean) => {
-  const oldTitle = document.title
+export const useDocumentTitle = (title: string, keepUnmount: boolean) => {
+  const oldTitle = document.title;
   console.log('渲染时的title', oldTitle);
-  
-  useEffect(()=>{
-    document.title = title
-  },[title])
 
-  useEffect(()=>{
-    return ()=>{
-      if(!keepUnmount){
-        document.title = oldTitle
+  useEffect(() => {
+    
+    document.title = title;
+  }, [title]);
+
+  useEffect(() => {
+
+    return () => {
+      if (!keepUnmount) {
+        document.title = oldTitle;
         console.log('卸载时的title', oldTitle);
       }
-    }
-  },[])
-}; */
+    };
+  }, []);
+};
