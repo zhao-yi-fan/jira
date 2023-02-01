@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 export const isFalsy = (value: unknown) => (value === 0 ? false : !value);
 export const isVoid = (value: unknown) =>
@@ -83,21 +83,21 @@ export const useArray = <T>(initialArray: T[]) => {
 };
 
 export const useDocumentTitle = (title: string, keepUnmount: boolean) => {
-  const oldTitle = document.title;
+  // const oldTitle = document.title;
+  const oldTitle = useRef(document.title).current;
+
   console.log('渲染时的title', oldTitle);
 
   useEffect(() => {
-    
     document.title = title;
   }, [title]);
 
   useEffect(() => {
-
     return () => {
       if (!keepUnmount) {
         document.title = oldTitle;
         console.log('卸载时的title', oldTitle);
       }
     };
-  }, []);
+  }, [keepUnmount, oldTitle]);
 };
