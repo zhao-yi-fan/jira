@@ -7,7 +7,7 @@ import { Typography } from 'antd';
 import { useProjects } from 'utils/project';
 import { useUsers } from 'utils/user';
 
-export const ProjectListScreent = () => {
+export const ProjectListScreen = () => {
   const [param, setParam] = useState({
     name: '',
     personId: '',
