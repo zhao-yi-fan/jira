@@ -1,10 +1,12 @@
 import { Table, TableProps } from 'antd';
 import dayjs from 'dayjs';
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { User } from './search-panel';
 
+// TODO 把所有id都改成number
 export interface Project {
-  id: string;
+  id: string; // TODO 改成number
   name: string;
   personId: string;
   pin: boolean;
@@ -20,7 +22,10 @@ export const List = ({ users, ...props }: ListProps) => {
       columns={[
         {
           title: '名称',
-          dataIndex: 'name',
+          render(row, project, index) {
+            
+            return <Link to={`${project.id}`}>{project.name}</Link>;
+          },
           sorter: (a, b) => a.name.localeCompare(b.name),
         },
         {
